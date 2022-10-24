@@ -16,12 +16,12 @@ const menuQuestion = [
 ];
 
 const departmentQuestion = [
-    {
+  {
     type: "input",
     name: "name",
     message: "What is the name of your new department?",
+  },
+];
 
-    }
-]
 
-module.exports = {menuQuestion, departmentQuestion};
+module.exports = { menuQuestion, departmentQuestion };

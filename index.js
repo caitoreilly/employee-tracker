@@ -10,6 +10,7 @@ const {
   addRole,
   viewAllEmployees,
   insertEmployee,
+  insertNewRole,
 } = require("./utils/functions");
 
 //user prompts
@@ -37,6 +38,9 @@ const promptUser = () => {
         break;
       case "Add Employee":
         addEmployee();
+        break;
+      case "Update Employee Role":
+        updateEmployee();
         break;
       default:
         console.log("I haven't gotten to this yet.");
@@ -148,6 +152,41 @@ async function addEmployee() {
     .then((answer) => {
       insertEmployee(answer);
       promptUser();
+    });
+}
+
+async function updateEmployee() {
+  const roles = await db.promise().query("SELECT * FROM role");
+  const roleArray = roles[0].map((role) => {
+    return { name: role.title, value: role.id };
+  });
+  const employees = await db.promise().query("SELECT * FROM employee");
+  const employeeArray = employees[0].map((employee) => {
+    return {
+      name: employee.first_name + " " + employee.last_name,
+      value: employee.role_id,
+    };
+  });
+  console.log(roleArray);
+  console.log(employeeArray);
+
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "first_name + last_name",
+        message: "Which employee's role do you want to update?",
+        choices: employeeArray,
+      },
+      {
+        type: "list",
+        name: "role_id",
+        message: "Which role do you want to assign the selected employee?",
+        choices: roleArray,
+      },
+    ])
+    .then((answer) => {
+      insertNewRole(answer);
     });
 }
 

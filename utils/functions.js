@@ -36,10 +36,19 @@ const insertEmployee = async (employee) => {
   return newEmployee;
 };
 
+const insertNewRole = async (role) => {
+  const newRole = await db
+    .promise()
+    .query("INSERT INTO employee WHERE employee.role_id = role.department_id", role);
+  return newRole;
+};
+
 module.exports = {
   viewAllDepartments,
   addDpt,
   viewAllRoles,
   addRole,
-  viewAllEmployees, insertEmployee
+  viewAllEmployees,
+  insertEmployee,
+  insertNewRole,
 };

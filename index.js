@@ -164,7 +164,7 @@ async function updateEmployee() {
   const employeeArray = employees[0].map((employee) => {
     return {
       name: employee.first_name + " " + employee.last_name,
-      value: employee.role_id,
+      value: employee.id,
     };
   });
   console.log(roleArray);
@@ -174,7 +174,7 @@ async function updateEmployee() {
     .prompt([
       {
         type: "list",
-        name: "first_name + last_name",
+        name: "employee_id",
         message: "Which employee's role do you want to update?",
         choices: employeeArray,
       },
@@ -186,7 +186,9 @@ async function updateEmployee() {
       },
     ])
     .then((answer) => {
+      console.log(answer);
       insertNewRole(answer);
+      promptUser();
     });
 }
 

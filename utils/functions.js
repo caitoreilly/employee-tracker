@@ -37,10 +37,19 @@ const insertEmployee = async (employee) => {
 };
 
 const insertNewRole = async (role) => {
-  const newRole = await db
-    .promise()
-    .query("INSERT INTO employee WHERE employee.role_id = role.department_id", role);
-  return newRole;
+  console.log(role.employee_id);
+  console.log(role.role_id);
+  try {
+    const newRole = await db
+      .promise()
+      .query("UPDATE employee SET employee.role_id = ? WHERE employee.id = ?", [
+        role.role_id,
+        role.employee_id,
+      ]);
+    return newRole;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {

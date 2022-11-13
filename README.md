@@ -51,7 +51,7 @@ Please follow the steps outlined below for how to use the command-line applicati
 
 ---
 
-You can view this [video tutorial]() which demonstrates how to use the Employee Tracker command-line application step by step on your device. 
+You can view this [video tutorial](https://drive.google.com/file/d/1PCYSaARwvSw07Vkgx-KmaBYdVJ4Zsu8F/view?usp=sharing) which demonstrates how to use the Employee Tracker command-line application step by step on your device. 
 
 ## Contributing
 
